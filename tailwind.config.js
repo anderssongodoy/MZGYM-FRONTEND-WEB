@@ -9,7 +9,8 @@ module.exports = {
         "primary": "#1A1363",
         "secondary": "#ECE9E9",
         "table": "#77749B",
-        "title": "#DEBA3B"
+        "title": "#DEBA3B",
+        "textbutton": "#2B2B2B"
       }
     },
   },
