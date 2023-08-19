@@ -234,7 +234,7 @@ export const Cliente = () => {
                         <input
                             className="w-full border rounded p-2 mb-4"
                             type="text"
-                            placeholder="Nombre"
+                            placeholder="Email"
                             value={editEmail}
                             onChange={e => setEditEmail(e.target.value)}
                         />
