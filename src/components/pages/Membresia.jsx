@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Membresia = () => {
     const [showModal, setShowModal] = useState(false);
@@ -49,10 +50,12 @@ export const Membresia = () => {
             });
 
             console.log(response.data);
+            toast.success('Membresía registrada exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al registrar membresía', error);
+            toast.error('Error al registrar membresía');
         }
     };
 
@@ -92,16 +95,19 @@ export const Membresia = () => {
             });
 
             console.log(response.data);
+            toast.success('Membresía actualizada exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al actualizar membresía', error);
+            toast.error('Error al actualizar membresía');
         }
     };
 
 
     return (
         <>
+        <Toaster />
             <div className="text-primary font-black text-4xl">
                 Membresias
             </div>

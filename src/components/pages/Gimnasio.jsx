@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Gimnasio = () => {
     const [showModal, setShowModal] = useState(false);
@@ -49,10 +50,12 @@ export const Gimnasio = () => {
             });
 
             console.log(response.data);
+            toast.success('Gimnasio registrado exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al registrar gimnasio', error);
+            toast.error('Error al registrar gimnasio');
         }
     };
 
@@ -92,14 +95,17 @@ export const Gimnasio = () => {
             });
 
             console.log(response.data);
+            toast.success('Gimnasio actualizado exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al actualizar gimnasio', error);
+            toast.error('Error al actualizar gimnasio');
         }
     };
     return (
         <>
+            <Toaster />
             <div className="text-primary font-black text-4xl">
                 Gimnasios
             </div>
@@ -206,7 +212,7 @@ export const Gimnasio = () => {
                         <span className="close absolute top-2 right-2 cursor-pointer bg-primary px-5 text-4xl text-secondary" onClick={closeModal}>
                             &times;
                         </span>
-                        <div className='text-title font-bold text-4xl mt-5'>{selectedGimnasio.tradeName}</div>
+                        <div className='text-title font-bold text-4xl mt-5'>{selectedGimnasio.tradename}</div>
                         <div className='text-primary font-bold text-4xl my-5'>Detalles</div>
                         <div>Distrito: {selectedGimnasio.district}</div>
                         <div>Descripción: {selectedGimnasio.description}</div>

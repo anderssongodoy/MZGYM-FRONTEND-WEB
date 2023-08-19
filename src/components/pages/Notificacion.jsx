@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Notificacion = () => {
     const [showModal, setShowModal] = useState(false);
@@ -43,10 +44,12 @@ export const Notificacion = () => {
             });
 
             console.log(response.data);
+            toast.success('Notificacion registrado exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al registrar notificacion', error);
+            toast.error('Error al registrar notificacion');
         }
     };
 
@@ -82,16 +85,19 @@ export const Notificacion = () => {
             });
 
             console.log(response.data);
+            toast.success('Notificacion actualizado exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al actualizar notificacion', error);
+            toast.error('Error al actualizar notificacion');
         }
     };
 
 
     return (
         <>
+            <Toaster />
             <div className="text-primary font-black text-4xl">
                 Notificaciones
             </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Cliente = () => {
     const [showModal, setShowModal] = useState(false);
@@ -49,10 +50,12 @@ export const Cliente = () => {
             });
 
             console.log(response.data);
+            toast.success('Cliente registrado exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al registrar cliente', error);
+            toast.error('Error al registrar cliente');
         }
     };
 
@@ -92,15 +95,18 @@ export const Cliente = () => {
             });
 
             console.log(response.data);
+            toast.success('Cliente actualizado exitosamente');
 
             closeModal();
         } catch (error) {
             console.error('Error al actualizar cliente', error);
+            toast.error('Error al actualizar cliente');
         }
     };
 
     return (
         <>
+            <Toaster />
             <div className="text-primary font-black text-4xl">
                 Clientes
             </div>
