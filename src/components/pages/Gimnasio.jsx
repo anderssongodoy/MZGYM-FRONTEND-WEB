@@ -4,10 +4,18 @@ import { useEffect, useState } from "react";
 export const Gimnasio = () => {
     const [showModal, setShowModal] = useState(false);
     const [gimnasios, setGimnasios] = useState([]);
+    const [selectedGimnasio, setSelectedGimnasio] = useState(null);
+    const [showGimnasioDetailsModal, setShowGimnasioDetailsModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editingGimnasio, setEditingGimnasio] = useState(null);
     const [tradename, setTradename] = useState('');
     const [district, setDistrict] = useState('');
     const [description, setDescription] = useState('');
     const [direction, setDirection] = useState('');
+    const [editTradename, setEditTradename] = useState('');
+    const [editDistrict, setEditDistrict] = useState('');
+    const [editDescription, setEditDescription] = useState('');
+    const [editDirection, setEditDirection] = useState('');
 
     useEffect(() => {
         async function fetchMembresias() {
@@ -15,7 +23,7 @@ export const Gimnasio = () => {
                 const response = await axios.get('https://mzgym2-production.up.railway.app/api/gym/list');
                 setGimnasios(response.data);
             } catch (error) {
-                console.error('Error al obtener membresias', error);
+                console.error('Error al obtener gimnasios', error);
             }
         }
         fetchMembresias();
@@ -27,6 +35,8 @@ export const Gimnasio = () => {
 
     const closeModal = () => {
         setShowModal(false);
+        setShowGimnasioDetailsModal(false);
+        setShowEditModal(false)
     };
 
     const handleRegister = async () => {
@@ -42,7 +52,50 @@ export const Gimnasio = () => {
 
             closeModal();
         } catch (error) {
-            console.error('Error al registrar membresía', error);
+            console.error('Error al registrar gimnasio', error);
+        }
+    };
+
+    const openGimnasioDetailsModal = async (gymUuid) => {
+        try {
+            const response = await axios.get(`https://mzgym2-production.up.railway.app/api/gym/findbyid/${gymUuid}`);
+            const clienteDetails = response.data;
+            setSelectedGimnasio(clienteDetails);
+            setShowGimnasioDetailsModal(true);
+        } catch (error) {
+            console.error('Error al obtener detalles de gimnasio', error);
+        }
+    };
+
+    const openEditModal = async (gymUuid) => {
+        try {
+            const response = await axios.get(`https://mzgym2-production.up.railway.app/api/gym/findbyid/${gymUuid}`);
+            const clienteDetails = response.data;
+            setEditingGimnasio(clienteDetails);
+            setEditTradename(clienteDetails.tradename);
+            setEditDistrict(clienteDetails.district);
+            setEditDescription(clienteDetails.description);
+            setEditDirection(clienteDetails.direction);
+            setShowEditModal(true);
+        } catch (error) {
+            console.error('Error al obtener detalles de gimnasio para editar', error);
+        }
+    };
+
+    const handleUpdate = async () => {
+        try {
+            const response = await axios.put(`https://mzgym2-production.up.railway.app/api/gym/update/${editingGimnasio.gymUuid}`, {
+                tradename: editTradename,
+                district: editDistrict,
+                description: editDescription,
+                direction: editDirection,
+            });
+
+            console.log(response.data);
+
+            closeModal();
+        } catch (error) {
+            console.error('Error al actualizar gimnasio', error);
         }
     };
     return (
@@ -50,7 +103,7 @@ export const Gimnasio = () => {
             <div className="text-primary font-black text-4xl">
                 Gimnasios
             </div>
-            <div className="text-primary rounded-md px-10 text-center mr-96 py-2 font-black text-2xl bg-white mt-10 cursor-pointer" onClick={openModal}>
+            <div className="text-primary hover:text-white hover:bg-primary rounded-md px-10 text-center mr-96 py-2 font-black text-2xl bg-white mt-10 cursor-pointer" onClick={openModal}>
                 Registrar Gimnasio
             </div>
             <div className="bg-table mt-10 rounded-xl">

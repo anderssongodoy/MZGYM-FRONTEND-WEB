@@ -21,8 +21,8 @@ export const Sidebar = () => {
     return (
         <div className="flex">
             <div
-                className={`bg-primary h-screen p-5 pt-8 ${open ? "w-72" : "w-20"
-                    } duration-300 relative`}
+                className={`bg-primary p-5 pt-8 ${open ? "w-72" : "w-20"
+                    } duration-300 relative min-h-screen`}
             >
                 <BsArrowLeftShort
                     className={`bg-white text-primary text-3xl rounded-full absolute -right-3 top-9 border border-primary cursor-pointer ${!open && "rotate-180"
