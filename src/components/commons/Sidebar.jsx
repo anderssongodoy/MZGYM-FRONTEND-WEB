@@ -31,7 +31,7 @@ export const Sidebar = () => {
                 />
                 <div className="inline-flex">
                     <MdAccountCircle
-                        className={`bg-amber-300 text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"
+                        className={`bg-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"
                             }`}
                     />
                     <h1

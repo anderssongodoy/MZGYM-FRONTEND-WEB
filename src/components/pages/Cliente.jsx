@@ -42,7 +42,7 @@ export const Cliente = () => {
 
     const handleRegister = async () => {
         try {
-            const response = await axios.post('https://mzgym2-production.up.railway.app/api/customer/create', {
+            const response = await axios.post('https://mzgym2-production.up.railway.app/api/authentication/register', {
                 email,
                 name,
                 lastname,

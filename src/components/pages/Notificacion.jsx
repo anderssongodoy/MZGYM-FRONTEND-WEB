@@ -110,9 +110,9 @@ export const Notificacion = () => {
                     <thead>
                         <tr className='text-white'>
                             <th className="px-10 py-2">Notificacion ID</th>
-                            <th className="px-10 py-2">Nombre</th>
-                            <th className="px-10 py-2">Precio</th>
-                            <th className="px-10 py-2">Duración</th>
+                            <th className="px-10 py-2">Título</th>
+                            <th className="px-10 py-2">Mensaje</th>
+                            <th className="px-10 py-2">Fecha Creada</th>
                             <th className="px-10 py-2">Acciones</th>
                         </tr>
                     </thead>
@@ -155,7 +155,7 @@ export const Notificacion = () => {
                         <input
                             className="w-full border rounded p-2 mb-4"
                             type="text"
-                            placeholder="Nombre"
+                            placeholder="Titulo"
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                         />
@@ -163,7 +163,7 @@ export const Notificacion = () => {
                         <input
                             className="w-full border rounded p-2 mb-4"
                             type="text"
-                            placeholder="Precio"
+                            placeholder="Mensaje"
                             value={message}
                             onChange={e => setMessage(e.target.value)}
                         />
@@ -221,7 +221,7 @@ export const Notificacion = () => {
                         <input
                             className="w-full border rounded p-2 mb-4"
                             type="text"
-                            placeholder="Precio"
+                            placeholder="Mensaje"
                             value={editMessage}
                             onChange={e => setEditMessage(e.target.value)}
                         />
